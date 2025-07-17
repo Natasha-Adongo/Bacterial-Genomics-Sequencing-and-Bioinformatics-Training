@@ -80,26 +80,34 @@ Perform quality control on raw sequencing data using **FastQC**, interpret resul
 ---
 
 
-## 1. Activate the Conda environment where FastQC is installed
+## Step 1. Activate the Conda environment where FastQC is installed
 ```
 conda activate fastqc
 ```
 
-## 2. Navigate to the working directory containing your FASTQ files
+## Step 2. Navigate to the working directory containing your FASTQ files
 ```
 cd ~/Documents/Training
 ```
-
-## 3. Run FastQC on a single FASTQ file
+## Step 3. Create QC dir and move into it
+```
+mkdir QC
+cd QC
+```
+## Step 4. Copy ERR12511689_1.fastq from NGS-formats
+```
+cp ../NGS-Formats/ERR12511689_1.fastq .
+```
+## Step 5. Run FastQC on a single FASTQ file
 ```
 fastqc ERR12511689_1.fastq
 ```
 
-# 4. Check generated output: FastQC creates two files per sample
+# Step 6. Check generated output: FastQC creates two files per sample
     - ERR12511689_1.html (interactive report)
     - ERR12511689_1.zip  (raw analysis data)
 
-## 5. Open the HTML report in a browser
+## Step 7. Open the HTML report in a browser
 navigate to the folder and double-click the HTML file
 
 
@@ -122,17 +130,17 @@ Learn how to remove low-quality bases and adapter contamination from raw sequenc
 
 
 
-## 1. Activate the Conda environment where Trimmomatic is installed
+## Step 1. Activate the Conda environment where Trimmomatic is installed
 ```
 conda activate trimmomatic
 ```
 
-## 2. Navigate to the working directory with your FASTQ files
+## Step 2. Navigate to the working directory with your FASTQ files
 ```
 cd ~/Documents/Training
 ```
 
-## 3. Run Trimmomatic on paired-end reads
+## Step 3. Run Trimmomatic on paired-end reads
 ### Syntax:
 `trimmomatic PE -threads <N> <input_forward> <input_reverse> <output_forward_paired> <output_forward_unpaired> <output_reverse_paired> <output_reverse_unpaired> <options>`
 
@@ -163,11 +171,11 @@ TRAILING:3 → Removes low-quality bases from end.
 SLIDINGWINDOW:4:15 → Scans with a 4-base window, trimming when average Q < 15.
 
 MINLEN:36 → Drops reads shorter than 36 bases after trimming.
-## 4. Check the output files:
+## Step 4. Check the output files:
  - Paired-end mode creates 4 files: forward_paired, forward_unpaired, reverse_paired, reverse_unpaired
 
 
-## 5. Post-trimming QC
+## Step 5. Post-trimming QC
 fastqc ERR12511689_1_paired.fq.gz ERR12511689_2_paired.fq.gz
 
 

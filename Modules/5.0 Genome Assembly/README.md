@@ -5,21 +5,24 @@
 # 🧩 Genome Assembly Module
 
 **Objective:**  
-Learn how to assemble genomes from raw sequencing reads using **SPAdes** (for Illumina short reads) and interpret assembly statistics with **QUAST**.
+1. Learn how to assemble genomes from raw sequencing reads using **SPAdes** (for Illumina short reads) **Flye** (for ONT long reads)
+2. Visualize assembly graphs using **Bandage**
+3. Interpret assembly statistics with **QUAST**.
 
 ---
 
 ## ✅ Prerequisites
 - **Conda** installed
 - Installed tools:
-  - **SPAdes** for genome assembly
+  - **SPAdes** for short read assembly
+  - **Flye** for long read assembly
+  - **Bandage** for graph visualization
   - **QUAST** for assembly quality assessment
 - Paired-end sequencing reads (e.g., `sample_R1_paired.fq.gz`, `sample_R2_paired.fq.gz`)
-- Sufficient system memory (≥ 8 GB for small bacterial genomes)
 
 ---
 
-
+# PART 1: SHORT READ ASSEMBLY
 ## Step 1. Activate the Conda environment with SPAdes 
 ```
 conda activate spades
@@ -29,37 +32,122 @@ conda activate spades
 ```
 cd ~/Documents/Training
 ```
-## Step 3. Create `Assembly` directory and navigate to it
+## Step 3. Create `short-read-assembly` directory and navigate to it
 ```
-mkdir Assembly
-cd Assembly
+mkdir short-read-assembly
+cd short-read-assembly
 ```
 ## Step 4. Copy raw reads 
 ```
-cp ../ERR*.fastq.gz .
+cp ../QC/ERR12511689_1_paired.fastq .
+cp ../QC/ERR12511689_2_paired.fastq .
 ```
 
 ## Step 5. Run SPAdes for genome assembly
 
-`spades.py -1 <forward_reads> -2 <reverse_reads> -o <output_directory> [options]`
+>spades.py -1 <forward_reads> -2 <reverse_reads> -o <output_directory> [options]
 ```
-spades.py -1 sample_R1_paired.fq.gz -2 sample_R2_paired.fq.gz -o spades_output -t 4
+spades.py -1 ERR12511689_1_paired.fastq -2 ERR12511689_2_paired.fastq -o spades_output -t 4
 ```
-
 
 ## Step 6. Check assembly results in the output folder
 # Key files:
-` - spades_output/contigs.fasta`
-` - spades_output/scaffolds.fasta`
-` - spades_output/spades.log`
+>- assembly/contigs.fasta
+>- assembly/scaffolds.fasta
+>- assembly/spades.log
+>- assembly/assembly.fastg
+```
+ls assembly
+```
 
-## Step 7. Assess assembly quality using QUAST
-`quast.py <assembly_fasta> -o <output_directory>`
+### Exerecise
+
+#### Count the number of sequences in `contigs.fasta`
+
+## Step 7. Activate Bandage
+```
+conda activate bandage
+```
+## Step 8. Load the graph file
+```
+Bandage load assembly/assembly.fastq
+```
+## Step 9. Activate quast
+```
+conda activate quast
+```
+## Step 10. Assess assembly quality using QUAST
+>quast.py <assembly_fasta> -o <output_directory>
 
 ```
-quast.py spades_output/contigs.fasta -o quast_report
+quast.py assembly/contigs.fasta -o quast_report
 ```
-# Step 8. View QUAST report
+## Step 11. View QUAST report
+```
+cd quast_report
+cat report.tsv
+```
+# PART 2: LONG READ ASSEMBLY
+## Step 1. Activate the Conda environment with flye 
+```
+conda activate flye
+```
+
+## Step 2. Navigate to your working directory
+```
+cd ~/Documents/Training
+```
+## Step 3. Create `long-read-assembly` directory and navigate to it
+```
+mkdir long-read-assembly
+cd long-read-assembly
+```
+## Step 4. Copy raw reads 
+```
+cp ../QC/ERR12511689_1_paired.fastq .
+cp ../QC/ERR12511689_2_paired.fastq .
+```
+
+## Step 5. Run flye for genome assembly
+
+flye 
+```
+flye --nano-raw sample.fastq -o assembly -t 8 -i 
+```
+
+## Step 6. Check assembly results in the output folder
+# Key files:
+>- assembly/assembly.fasta
+>- assembly/assembly_graph.gfa
+>- assembly/assembly_info.txt
+
+```
+ls assembly
+```
+
+### Exerecise
+
+#### Count the number of sequences in `assembly.fasta`
+
+## Step 7. Activate Bandage
+```
+conda activate bandage
+```
+## Step 8. Load the graph file
+```
+Bandage load assembly/assembly_graph.gfa
+```
+## Step 9. Activate quast
+```
+conda activate quast
+```
+## Step 10. Assess assembly quality using QUAST
+>quast.py <assembly_fasta> -o <output_directory>
+
+```
+quast.py assembly/assembly.fasta -o quast_report
+```
+## Step 11. View QUAST report
 ```
 cd quast_report
 cat report.tsv

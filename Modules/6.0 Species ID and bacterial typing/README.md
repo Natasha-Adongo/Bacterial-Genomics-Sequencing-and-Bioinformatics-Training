@@ -3,6 +3,37 @@
 ## Module Developer : Collins Kigen
 ## Introduction
 # Part A: Species ID
+# **Principle of Mash**
+
+Mash is a fast tool for estimating genome similarity using the **MinHash algorithm**. Instead of full alignment, it summarizes sequences into small sets called **sketches**.
+
+---
+
+## **How It Works**
+1. **Split into k-mers**  
+   Break sequences into small pieces of length *k* (default 21).
+
+2. **Hash and Sketch**  
+   Convert k-mers into numeric hashes and keep only a small subset (default 1000).  
+   This subset is the **sketch**.
+
+3. **Compare Sketches**  
+   Similarity is estimated using the **Jaccard index** (shared hashes / total hashes).
+
+4. **Compute Distance**  
+   Convert similarity to a distance score:  
+   - **Smaller score = more similar genomes**.
+
+---
+
+## **Why Mash?**
+- Very fast and memory-efficient  
+- Works on assemblies or raw reads  
+- Ideal for species ID, clustering, and contamination checks  
+
+---
+
+
 
 
 ## Step A1. Navigate to working directory

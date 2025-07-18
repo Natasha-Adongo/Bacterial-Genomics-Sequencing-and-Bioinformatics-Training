@@ -4,20 +4,18 @@
 ## Introduction
 # Part A: Species ID
 
-## Step A1. Activate mash environment
 
-
-## Step A2. Navigate to working directory
+## Step A1. Navigate to working directory
 ```
 cd ~/Documents/Training
 ```
 
-## Step A3. Create `spedies_id` directory and navigate into it
+## Step A2. Create `spedies_id` directory and navigate into it
 ```
 mkdir species_id
 cd species_id
 ```
-## Copy short-read assembly and rename to actual sample ID
+## Step A3. Copy short-read assembly and rename to actual sample ID
 ```
 cp ../short-read-assembly/assembly/contigs.fasta
 mv contigs.fasta ERR12511689.fasta
@@ -32,7 +30,7 @@ conda activate mash
 ```
 mash screen ../mash/refseq.genomes.k21s1000.msh ERR1251168.fasta > mash_screen.txt
 ```
-## Step Sort mash results and visualize
+## Step A6. Sort mash results and visualize
 ```
 sort -gr mash_screen.txt > mash_screen_sorted.txt
 less mash_screen_sorted.txt
@@ -53,7 +51,6 @@ cd typing
 ```
 cp ../species_id/ERR12511689.fasta .
 ```
-
 
 ## Step B4. Activate mlst
 ```

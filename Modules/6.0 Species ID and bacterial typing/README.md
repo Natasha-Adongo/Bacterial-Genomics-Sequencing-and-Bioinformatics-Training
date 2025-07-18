@@ -59,7 +59,7 @@ conda activate mash
 
 ## Step A5. Perform mash screen
 ```
-mash screen ../mash/refseq.genomes.k21s1000.msh ERR1251168.fasta > mash_screen.txt
+mash screen ../refseq.genomes.k21s1000.msh ERR1251168.fasta > mash_screen.txt
 ```
 ## Step A6. Sort mash results and visualize
 ```

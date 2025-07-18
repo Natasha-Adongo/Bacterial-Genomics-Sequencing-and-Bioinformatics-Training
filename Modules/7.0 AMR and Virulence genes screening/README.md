@@ -125,7 +125,7 @@ abricate --list
 ##### Step 6: Run ABRicate
 
 ```
-abricate -db resfinder ../short-read-assembly/assembly/ERR12511689.fasta > ./ERR12511689.tab
+abricate -db resfinder ../species_id/ERR12511689.fasta > ./ERR12511689.tab
 ```
 
 <pre>
@@ -178,7 +178,7 @@ cd Vir_genes
 ##### Step 3: Run ABRicate
 
 ```
-abricate -db VFDB ../short-read-assembly/assembly/ERR12511689.fasta > ./ERR12511689.tab
+abricate -db VFDB ../species_id/ERR12511689.fasta > ./ERR12511689.tab
 ```
 
 <pre>

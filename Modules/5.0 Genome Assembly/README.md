@@ -104,15 +104,14 @@ cd long-read-assembly
 ```
 ## Step B4. Copy raw reads 
 ```
-cp ../QC/ERR12511689_1_paired.fastq .
-cp ../QC/ERR12511689_2_paired.fastq .
+cp ../QC/MHKONT.fastq.gz .
 ```
 
 ## Step B5. Run flye for genome assembly
 
 flye 
 ```
-flye --nano-raw sample.fastq -o assembly -t 8 -i 
+flye --nano-raw MHKONT.fastq -o assembly -t 8 -i 
 ```
 
 ## Step B6. Check assembly results in the output folder

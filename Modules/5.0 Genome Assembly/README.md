@@ -22,35 +22,35 @@
 
 ---
 
-# PART 1: SHORT READ ASSEMBLY
-## Step 1. Activate the Conda environment with SPAdes 
+# PART A: SHORT READ ASSEMBLY
+## Step A1. Activate the Conda environment with SPAdes 
 ```
 conda activate spades
 ```
 
-## Step 2. Navigate to your working directory
+## Step A2. Navigate to your working directory
 ```
 cd ~/Documents/Training
 ```
-## Step 3. Create `short-read-assembly` directory and navigate to it
+## Step A3. Create `short-read-assembly` directory and navigate to it
 ```
 mkdir short-read-assembly
 cd short-read-assembly
 ```
-## Step 4. Copy raw reads 
+## Step A4. Copy raw reads 
 ```
 cp ../QC/ERR12511689_1_paired.fastq .
 cp ../QC/ERR12511689_2_paired.fastq .
 ```
 
-## Step 5. Run SPAdes for genome assembly
+## Step A5. Run SPAdes for genome assembly
 
 >spades.py -1 <forward_reads> -2 <reverse_reads> -o <output_directory> [options]
 ```
 spades.py -1 ERR12511689_1_paired.fastq -2 ERR12511689_2_paired.fastq -o spades_output -t 4
 ```
 
-## Step 6. Check assembly results in the output folder
+## Step A6. Check assembly results in the output folder
 # Key files:
 >- assembly/contigs.fasta
 >- assembly/scaffolds.fasta
@@ -64,19 +64,19 @@ ls assembly
 
 #### Count the number of sequences in `contigs.fasta`
 
-## Step 7. Activate Bandage
+## Step A7. Activate Bandage
 ```
 conda activate bandage
 ```
-## Step 8. Load the graph file
+## Step A8. Load the graph file
 ```
 Bandage load assembly/assembly.fastq
 ```
-## Step 9. Activate quast
+## Step A9. Activate quast
 ```
 conda activate quast
 ```
-## Step 10. Assess assembly quality using QUAST
+## Step A10. Assess assembly quality using QUAST
 >quast.py <assembly_fasta> -o <output_directory>
 
 ```
@@ -87,35 +87,35 @@ quast.py assembly/contigs.fasta -o quast_report
 cd quast_report
 cat report.tsv
 ```
-# PART 2: LONG READ ASSEMBLY
-## Step 1. Activate the Conda environment with flye 
+# PART B: LONG READ ASSEMBLY
+## Step B1. Activate the Conda environment with flye 
 ```
 conda activate flye
 ```
 
-## Step 2. Navigate to your working directory
+## Step B2. Navigate to your working directory
 ```
 cd ~/Documents/Training
 ```
-## Step 3. Create `long-read-assembly` directory and navigate to it
+## Step B3. Create `long-read-assembly` directory and navigate to it
 ```
 mkdir long-read-assembly
 cd long-read-assembly
 ```
-## Step 4. Copy raw reads 
+## Step B4. Copy raw reads 
 ```
 cp ../QC/ERR12511689_1_paired.fastq .
 cp ../QC/ERR12511689_2_paired.fastq .
 ```
 
-## Step 5. Run flye for genome assembly
+## Step B5. Run flye for genome assembly
 
 flye 
 ```
 flye --nano-raw sample.fastq -o assembly -t 8 -i 
 ```
 
-## Step 6. Check assembly results in the output folder
+## Step B6. Check assembly results in the output folder
 # Key files:
 >- assembly/assembly.fasta
 >- assembly/assembly_graph.gfa
@@ -129,25 +129,25 @@ ls assembly
 
 #### Count the number of sequences in `assembly.fasta`
 
-## Step 7. Activate Bandage
+## Step B7. Activate Bandage
 ```
 conda activate bandage
 ```
-## Step 8. Load the graph file
+## Step B8. Load the graph file
 ```
 Bandage load assembly/assembly_graph.gfa
 ```
-## Step 9. Activate quast
+## Step B9. Activate quast
 ```
 conda activate quast
 ```
-## Step 10. Assess assembly quality using QUAST
+## Step B10. Assess assembly quality using QUAST
 >quast.py <assembly_fasta> -o <output_directory>
 
 ```
 quast.py assembly/assembly.fasta -o quast_report
 ```
-## Step 11. View QUAST report
+## Step B11. View QUAST report
 ```
 cd quast_report
 cat report.tsv

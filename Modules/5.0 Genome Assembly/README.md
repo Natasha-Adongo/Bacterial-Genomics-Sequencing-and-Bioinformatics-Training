@@ -55,7 +55,7 @@ spades.py -1 ERR12511689_1_paired.fastq -2 ERR12511689_2_paired.fastq -o spades_
 >- assembly/contigs.fasta
 >- assembly/scaffolds.fasta
 >- assembly/spades.log
->- assembly/assembly.fastg
+>- assembly/assembly_graph.fastg
 ```
 ls assembly
 ```
@@ -70,7 +70,7 @@ conda activate bandage
 ```
 ## Step A8. Load the graph file
 ```
-Bandage load assembly/assembly.fastq
+Bandage load assembly/assembly_graph.fastg
 ```
 ## Step A9. Activate quast
 ```
@@ -104,14 +104,14 @@ cd long-read-assembly
 ```
 ## Step B4. Copy raw reads 
 ```
-cp ../QC/MHKONT.fastq.gz .
+cp ../sampleX.fastq.gz .
 ```
 
 ## Step B5. Run flye for genome assembly
 
 flye 
 ```
-flye --nano-raw MHKONT.fastq -o assembly -t 8 -i 
+flye --nano-raw sampleX.fastq.gz -o assembly -t 8 -i 2
 ```
 
 ## Step B6. Check assembly results in the output folder

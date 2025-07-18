@@ -72,7 +72,11 @@ conda activate sccmec
 sccmec ERR12511689.fasta
 ```
 # Part D: Spa typing
-## Step D1. Perform spatyping
+## Step D1. Activate spatyper environment
+```
+conda activate spatyper
+```
+## Step D2. Perform spatyping
 ```
 spatyper ERR12511689.fasta
 ```

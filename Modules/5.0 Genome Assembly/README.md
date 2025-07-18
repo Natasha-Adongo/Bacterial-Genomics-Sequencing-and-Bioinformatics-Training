@@ -104,7 +104,7 @@ cd long-read-assembly
 ```
 ## Step B4. Copy raw reads 
 ```
-cp ../QC/sampleX.fastq.gz .
+cp ../sampleX.fastq.gz .
 ```
 
 ## Step B5. Run flye for genome assembly

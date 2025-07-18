@@ -55,7 +55,7 @@ spades.py -1 ERR12511689_1_paired.fastq -2 ERR12511689_2_paired.fastq -o spades_
 >- assembly/contigs.fasta
 >- assembly/scaffolds.fasta
 >- assembly/spades.log
->- assembly/assembly.fastg
+>- assembly/assembly_graph.fastg
 ```
 ls assembly
 ```
@@ -70,7 +70,7 @@ conda activate bandage
 ```
 ## Step A8. Load the graph file
 ```
-Bandage load assembly/assembly.fastq
+Bandage load assembly/assembly_graph.fastg
 ```
 ## Step A9. Activate quast
 ```

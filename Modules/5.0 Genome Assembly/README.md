@@ -111,7 +111,7 @@ cp ../sampleX.fastq.gz .
 
 flye 
 ```
-flye --nano-raw sampleX.fastq -o assembly -t 8 -i 2
+flye --nano-raw sampleX.fastq.gz -o assembly -t 8 -i 2
 ```
 
 ## Step B6. Check assembly results in the output folder
